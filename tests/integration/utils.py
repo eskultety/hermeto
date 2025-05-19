@@ -326,7 +326,7 @@ def update_test_data_if_needed(path: Path, data: dict[str, Any]) -> None:
     else:
         raise ValueError(f"Don't know how to serialize data to {path.name} :(")
 
-    if os.getenv("HERMETO_GENERATE_TEST_DATA") == "true":
+    if os.getenv("HERMETO_GENERATE_TEST_DATA"):
         path.parent.mkdir(parents=True, exist_ok=True)
         with open(path, "w") as file:
             file.write(serialize(data))
@@ -709,7 +709,7 @@ def just_some_package_managers_were_affected_by(changes: tuple[Path, ...]) -> bo
 
 
 def must_test_all() -> bool:
-    return os.getenv("HERMETO_RUN_ALL_INTEGRATION_TESTS", "false").lower() == "true"
+    return bool(os.getenv("HERMETO_RUN_ALL_INTEGRATION_TESTS", 0))
 
 
 def determine_integration_tests_to_skip() -> Any:

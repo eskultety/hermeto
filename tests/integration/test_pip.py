@@ -136,8 +136,8 @@ log = logging.getLogger(__name__)
             ),
             id="pip_custom_index",
             marks=pytest.mark.skipif(
-                os.getenv("HERMETO_TEST_LOCAL_PYPISERVER") != "true",
-                reason="HERMETO_TEST_LOCAL_PYPISERVER!=true",
+                not os.getenv("HERMETO_TEST_LOCAL_PYPISERVER", 0),
+                reason="HERMETO_TEST_LOCAL_PYPISERVER=0",
             ),
         ),
     ],
