@@ -81,9 +81,10 @@ StrPath = Union[str, os.PathLike[str]]
 
 
 class ContainerImage:
-    def __init__(self, repository: str):
+    def __init__(self, repository: str, debug: bool = False):
         """Initialize ContainerImage object with associated repository."""
         self.repository = repository
+        self.debug = debug
 
     def __enter__(self) -> "ContainerImage":
         return self
@@ -115,8 +116,9 @@ class ContainerImage:
             podman_flags.extend(["-v", f"{src}:{dest}:z"])
         if net:
             podman_flags.append(f"--net={net}")
+
         image_cmd = ["podman", "run", "--rm", *podman_flags, self.repository] + cmd
-        return run_cmd(image_cmd, **subprocess_kwargs)
+        return run_cmd(image_cmd, debug=self.debug, **subprocess_kwargs)
 
     def __exit__(self, exc_type: Any, exc_value: Any, exc_traceback: Any) -> None:
         image_cmd = ["podman", "rmi", "--force", self.repository]
@@ -149,6 +151,27 @@ class HermetoImage(ContainerImage):
                 return super().run_cmd_on_image(
                     cmd, tmp_path, [*mounts, (netrc_path, "/root/.netrc")], net, podman_flags
                 )
+
+        if self.debug:
+            # toolbox image must use CMD instead of ENTRYPOINT, so we need to force the command name
+            cmd = ["hermeto"] + cmd
+
+            debuggers = ("ipdb", "pudb")
+            debugger = os.environ.get("HERMETO_TEST_DEBUGGER")
+            if debugger is not None:
+                if debugger not in debuggers:
+                    raise ValueError(
+                        f"Invalid value 'HERMETO_TEST_DEBUGGER={debugger}', please choose one of: "
+                        f"{debuggers}"
+                    )
+
+                # make sure to override the debugger of choice with user's value
+                podman_flags.append(f"--env='PYTHONBREAKPOINT={debugger}.set_trace'")
+
+            # need to pass '-it' to podman + set std in/outs explicitly for subprocess for
+            # podman to propagate the interactive debugger session
+            podman_flags.extend(["--interactive", "--tty"])
+
         return super().run_cmd_on_image(cmd, tmp_path, mounts, net, podman_flags, subprocess_kwargs)
 
 
@@ -202,7 +225,9 @@ def _build_image(podman_cmd: list[str], *, tag: str) -> ContainerImage:
     return ContainerImage(tag)
 
 
-def run_cmd(cmd: Union[list[str], str], **subprocess_kwargs: Any) -> tuple[str, int]:
+def run_cmd(
+    cmd: Union[list[str], str], debug: bool = False, **subprocess_kwargs: Any
+) -> tuple[str, int]:
     """
     Run command via subprocess.
 
@@ -215,8 +240,9 @@ def run_cmd(cmd: Union[list[str], str], **subprocess_kwargs: Any) -> tuple[str, 
 
     # redirect stderr to stdout for easier evaluation/handling of a single stream
     forced_options = {
-        "stdout": subprocess.PIPE,
-        "stderr": subprocess.STDOUT,
+        "stdin": None if not debug else sys.stdin,
+        "stdout": subprocess.PIPE if not debug else sys.stdout,
+        "stderr": subprocess.STDOUT if not debug else sys.stderr,
         "encoding": "utf-8",
         "text": True,
     }
