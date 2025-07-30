@@ -17,6 +17,15 @@ from . import utils
 log = logging.getLogger(__name__)
 
 
+def pytest_addoption(parser):
+    parser.addoption(
+        "--debug-hermeto",
+        action="store_true",
+        default=False,
+        help="Enable interactive debugging with ipdb/pudb with PYTHONBREAKPOINT",
+    )
+
+
 @pytest.fixture(scope="session")
 def test_repo_dir(tmp_path_factory: pytest.FixtureRequest) -> Path:
     test_repo_url = os.environ.get(
@@ -47,7 +56,8 @@ def top_level_test_dir() -> Path:
 
 
 @pytest.fixture(scope="session")
-def hermeto_image() -> utils.HermetoImage:
+def hermeto_image(request: pytest.FixtureRequest) -> utils.HermetoImage:
+    debug = request.config.getoption("--debug-hermeto")
     if not (image_ref := os.environ.get("HERMETO_IMAGE")):
         image_ref = "localhost/hermeto:latest"
         log.info("Building local hermeto:latest image")
@@ -56,7 +66,7 @@ def hermeto_image() -> utils.HermetoImage:
         repo_root = Path(__file__).parents[2]
         utils.build_image(repo_root, tag=image_ref)
 
-    hermeto = utils.HermetoImage(image_ref)
+    hermeto = utils.HermetoImage(image_ref, debug=debug)
     if not image_ref.startswith("localhost/"):
         hermeto.pull_image()
 
