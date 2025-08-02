@@ -149,7 +149,7 @@ class HermetoImage(ContainerImage):
                 netrc_path = Path(netrc_tmpdir, ".netrc")
                 netrc_path.write_text(netrc_content)
                 return super().run_cmd_on_image(
-                    cmd, tmp_path, [*mounts, (netrc_path, "/root/.netrc")], net, podman_flags
+                    cmd, tmp_path, [*mounts, (netrc_path, "/root/.netrc")], net, podman_flags,
                 )
 
         if self.debug:
@@ -175,8 +175,11 @@ class HermetoImage(ContainerImage):
         return super().run_cmd_on_image(cmd, tmp_path, mounts, net, podman_flags, subprocess_kwargs)
 
 
-def build_image(context_dir: Path, tag: str) -> ContainerImage:
-    return _build_image(["podman", "build", str(context_dir)], tag=tag)
+def build_image(context_dir: Path, tag: str, debug=False) -> ContainerImage:
+    containerfile = "Containerfile.toolbox" if debug else "Containerfile"
+    return _build_image(
+        ["podman", "build", "-f", containerfile, str(context_dir)], tag=tag
+    )
 
 
 def build_image_for_test_case(
