@@ -49,6 +49,8 @@ nav:
 # Markdown extensions
 markdown_extensions:
   - pymdownx.emoji
+  - pymdownx.highlight:
+  - pymdownx.superfences
   - toc:
       permalink: true
   - footnotes
