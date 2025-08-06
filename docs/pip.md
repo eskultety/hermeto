@@ -33,7 +33,7 @@ hermeto fetch-deps \
 
 where 'JSON input' is
 
-```jsonc
+```json
 {
   "type": "pip",
   // path to the package (relative to the --source directory)
