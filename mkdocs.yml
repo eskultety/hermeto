@@ -50,6 +50,8 @@ nav:
 markdown_extensions:
   - pymdownx.emoji
   - pymdownx.highlight:
+      use_pygments: true
+      pygments_lang_class: true
   - pymdownx.superfences
   - toc:
       permalink: true
