@@ -85,7 +85,7 @@ def test_get_main_package_name_and_version(rooted_tmp_path: RootedPath) -> None:
         PathDependency(
             name="my_path_dep",
             version="0.2.0",
-            root=str(rooted_tmp_path),
+            root=rooted_tmp_path,
             subpath=".",
         ),
     ]
@@ -111,7 +111,6 @@ def test_get_main_package_name_and_version_from_repo(rooted_tmp_path_repo: Roote
 
 def test_get_main_package_name_and_version_from_repo_without_origin(
     rooted_tmp_path_repo: RootedPath,
-    caplog: pytest.LogCaptureFixture,
 ) -> None:
     with pytest.raises(PackageRejected) as exc_info:
         _get_main_package_name_and_version(package_dir=rooted_tmp_path_repo, dependencies=[])
