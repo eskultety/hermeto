@@ -4,7 +4,7 @@ import logging
 from collections.abc import Iterable
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Literal, Optional, cast
+from typing import Any, Literal, cast
 
 import pypi_simple
 import requests
@@ -143,7 +143,7 @@ def _get_project_packages_from(
 def process_package_distributions(
     requirement: PipRequirement,
     pip_deps_dir: RootedPath,
-    binary_filters: Optional[PipBinaryFilters] = None,
+    binary_filters: PipBinaryFilters | None = None,
     index_url: str = pypi_simple.PYPI_SIMPLE_ENDPOINT,
 ) -> list[DistributionPackageInfo]:
     """

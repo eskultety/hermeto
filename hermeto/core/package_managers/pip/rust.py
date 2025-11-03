@@ -2,9 +2,10 @@
 
 import logging
 import shutil
+from collections.abc import Iterable
 from pathlib import Path
 from textwrap import dedent
-from typing import Any, Iterable
+from typing import Any
 
 from pybuild_deps import parsers
 
