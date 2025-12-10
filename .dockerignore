@@ -1,8 +1,6 @@
-*
-
-!.git/
-!.git_archival.txt
-!hermeto/
-!pyproject.toml
-!requirements.txt
-!MANIFEST.in
+.nox/
+.mypy_cache/
+.pytest_cache/
+__pycache__/
+*.egg-info/
+*.pyc
