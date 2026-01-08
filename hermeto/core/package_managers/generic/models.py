@@ -25,6 +25,25 @@ from hermeto.core.rooted_path import RootedPath
 CHECKSUM_FORMAT = re.compile(r"^[a-zA-Z0-9]+:[a-zA-Z0-9]+$")
 
 
+class AuthHeader(BaseModel):
+    """
+    Header-based authentication with value template.
+
+    :param header_name: HTTP header name (e.g., "PRIVATE-TOKEN", "Authorization").
+    :param value: Header value template with $VAR placeholders for environment variables.
+                  Examples: "$GITLAB_TOKEN", "Bearer $GITHUB_TOKEN", "token $GITEA_TOKEN"
+    """
+
+    type: Literal["header"] = "header"
+    header_name: str
+    value: str
+    model_config = ConfigDict(extra="forbid")
+
+
+# Union type for all supported authentication methods (extensible for future auth types)
+ArtifactAuth = AuthHeader
+
+
 class LockfileMetadata(BaseModel):
     """Defines format of the metadata section in the lockfile."""
 
