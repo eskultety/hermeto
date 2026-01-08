@@ -116,11 +116,14 @@ async def async_download_files(
     files_to_download: dict[str, StrPath],
     concurrency_limit: int,
     ssl_context: ssl.SSLContext | None = None,
+    headers_by_url: dict[str, dict[str, str]] | None = None,
 ) -> None:
     """Asynchronous function to download files.
 
     :param files_to_download: Dict of files to download with file paths
     :param concurrency_limit: Max number of concurrent tasks (downloads).
+    :param ssl_context: Optional SSL context for HTTPS connections.
+    :param headers_by_url: Optional dict mapping URLs to their HTTP headers (for auth).
     """
     trace_config = aiohttp.TraceConfig()
     num_attempts: int = int(DEFAULT_RETRY_OPTIONS["total"])
@@ -157,10 +160,11 @@ async def async_download_files(
                         t.cancel()
                     raise
 
+            headers = headers_by_url.get(url) if headers_by_url else None
             tasks.add(
                 asyncio.create_task(
                     _async_download_binary_file(
-                        session, url, download_path, ssl_context=ssl_context
+                        session, url, download_path, headers=headers, ssl_context=ssl_context
                     )
                 )
             )
