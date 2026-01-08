@@ -71,6 +71,7 @@ async def _async_download_binary_file(
     url: str,
     download_path: StrPath,
     auth: aiohttp.BasicAuth | None = None,
+    headers: dict[str, str] | None = None,
     ssl_context: ssl.SSLContext | None = None,
     chunk_size: int = 8192,
 ) -> None:
@@ -81,6 +82,7 @@ async def _async_download_binary_file(
     :param str url: URL for file download
     :param str download_path: File path location
     :param aiohttp.BasicAuth auth: Authentication for the URL
+    :param dict headers: Additional HTTP headers (e.g., for token-based auth)
     :param int chunk_size: Chunk size param for Response.content.read()
     :raise FetchError: If download failed
     """
@@ -91,7 +93,7 @@ async def _async_download_binary_file(
             f"aiohttp.ClientSession.get(url: {url}, timeout: {timeout}, raise_for_status: True)"
         )
         async with session.get(
-            url, timeout=timeout, auth=auth, raise_for_status=True, ssl=ssl_context
+            url, timeout=timeout, auth=auth, headers=headers, raise_for_status=True, ssl=ssl_context
         ) as resp:
             with open(download_path, "wb") as f:
                 while True:
