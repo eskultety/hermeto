@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import os
+import re
 from pathlib import Path
 
 import yaml
@@ -9,17 +10,66 @@ from pydantic import ValidationError
 from hermeto import APP_NAME
 from hermeto.core.checksum import must_match_any_checksum
 from hermeto.core.config import get_config
-from hermeto.core.errors import PackageRejected
+from hermeto.core.errors import FetchError, PackageRejected
 from hermeto.core.models.input import Request
 from hermeto.core.models.output import RequestOutput
 from hermeto.core.models.sbom import Component
 from hermeto.core.package_managers.general import async_download_files
-from hermeto.core.package_managers.generic.models import GenericLockfileV1
+from hermeto.core.package_managers.generic.models import ArtifactAuth, GenericLockfileV1
 from hermeto.core.rooted_path import RootedPath
 
 log = logging.getLogger(__name__)
 DEFAULT_LOCKFILE_NAME = "artifacts.lock.yaml"
 DEFAULT_DEPS_DIR = "deps/generic"
+
+
+def _resolve_env_vars(template: str) -> str:
+    """
+    Resolve environment variable placeholders in a template string.
+
+    :param template: String with $VAR placeholders (e.g., "Bearer $GITHUB_TOKEN").
+    :return: String with placeholders replaced by environment variable values.
+    :raises FetchError: If any referenced environment variable is not set.
+    """
+    pattern = re.compile(r"\$([A-Za-z_][A-Za-z0-9_]*)")
+    missing_vars = []
+
+    def replace_var(match: re.Match[str]) -> str:
+        var_name = match.group(1)
+        value = os.environ.get(var_name)
+        if value is None:
+            missing_vars.append(var_name)
+            return match.group(0)  # Keep original for error message
+        return value
+
+    result = pattern.sub(replace_var, template)
+
+    if missing_vars:
+        raise FetchError(
+            f"Environment variable(s) required for authentication not set: "
+            f"{', '.join(missing_vars)}"
+        )
+
+    return result
+
+
+def resolve_artifact_auth(auth_config: ArtifactAuth | None) -> dict[str, str] | None:
+    """
+    Resolve authentication configuration to HTTP headers.
+
+    :param auth_config: Authentication configuration from the lockfile artifact.
+    :return: Dictionary of HTTP headers, or None if no auth configured.
+    :raises FetchError: If required environment variable is not set.
+    """
+    if auth_config is None:
+        return None
+
+    if auth_config.type == "header":
+        header_value = _resolve_env_vars(auth_config.value)
+        return {auth_config.header_name: header_value}
+
+    # Future auth types can be added here
+    return None
 
 
 def fetch_generic_source(request: Request) -> RequestOutput:
