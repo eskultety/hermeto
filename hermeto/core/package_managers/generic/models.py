@@ -112,9 +112,11 @@ class LockfileArtifactUrl(LockfileArtifactBase):
     Defines format of a single artifact in the lockfile.
 
     :param download_url: The URL to download the artifact from.
+    :param auth: Optional authentication configuration for the download.
     """
 
     download_url: Annotated[AnyUrl, PlainSerializer(str, return_type=str)]
+    auth: ArtifactAuth | None = None
 
     def resolve_filename(self) -> str:
         """Resolve the filename of the artifact."""
