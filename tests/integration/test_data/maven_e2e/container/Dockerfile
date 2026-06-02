@@ -1,4 +1,4 @@
-FROM mirror.gcr.io/maven:3.9-eclipse-temurin-21
+FROM mirror.gcr.io/library/maven:3.9-eclipse-temurin-21
 
 # Test disabled network access
 RUN if getent hosts www.google.com; then echo "Has network access!"; exit 1; fi
