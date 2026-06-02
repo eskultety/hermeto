@@ -501,7 +501,7 @@ def build_image_and_check_cmd(
     with build_image_for_test_case(
         source_dir=test_repo_dir,
         output_dir=tmp_path,
-        containerfile_path=container_folder.joinpath("Containerfile"),
+        containerfile_path=container_folder.joinpath("Dockerfile"),
         test_case=test_case,
     ) as test_image:
         log.info(f"Run command {check_cmd} on built image {test_image.repository}")
