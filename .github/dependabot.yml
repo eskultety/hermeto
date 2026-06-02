@@ -9,11 +9,23 @@ updates:
       interval: "weekly"
 
   - package-ecosystem: "docker"
-    directory: "/"
+    directories:
+      - "/"
+      - "/tests/integration/test_data/*/container/"
     schedule:
       interval: "monthly"
     commit-message:
       prefix: "Dockerfile"
+    groups:
+      node-test-images:
+        patterns:
+          - "library/node"
+      rust-test-images:
+        patterns:
+          - "library/rust"
+      golang-test-images:
+        patterns:
+          - "library/golang"
     ignore:
       # We must handle major.minor Go releases manually due to direct feature support
       - dependency-name: "library/golang"
@@ -29,6 +41,8 @@ updates:
         update-types:
           - "version-update:semver-major"
           - "version-update:semver-minor"
+      # UBI7 is pinned to a specific historical release
+      - dependency-name: "ubi7/*"
 
   - package-ecosystem: "pip"
     directory: "/"
