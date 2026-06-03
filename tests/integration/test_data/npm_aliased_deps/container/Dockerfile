@@ -1,4 +1,4 @@
-FROM mirror.gcr.io/library/node:24.14-alpine
+FROM mirror.gcr.io/library/node:24.13-alpine
 
 # Test disabled network access
 RUN if getent hosts www.google.com; then echo "Has network access!"; exit 1; fi
