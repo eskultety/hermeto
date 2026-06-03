@@ -1,4 +1,4 @@
-FROM mirror.gcr.io/library/python:3.12-slim
+FROM mirror.gcr.io/library/python:3.12.11-slim
 
 # Test disabled network access
 RUN if getent hosts www.google.com; then echo "Has network access!"; exit 1; fi
