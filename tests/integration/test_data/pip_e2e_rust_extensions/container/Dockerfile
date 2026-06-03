@@ -1,5 +1,5 @@
 # A corresponding rpms.lock.yaml was built for UBI9
-FROM registry.access.redhat.com/ubi9/ubi@sha256:c2bc4ee4ec4f200af9d78fd1307b7ff39f5db2c27166e52fb37650dee68a5ffd
+FROM registry.access.redhat.com/ubi9/ubi@sha256:80b1f4c34a7eed1b03a05d12b55768f3e522eef6ec294c6fbd5fa47b6b2892ee
 
 # Test disabled network access
 RUN if getent hosts www.google.com; then echo "Has network access!"; exit 1; fi
