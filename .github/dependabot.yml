@@ -13,7 +13,7 @@ updates:
       - "/"
       - "/tests/integration/test_data/*/container/"
     schedule:
-      interval: "monthly"
+      interval: "daily"
     commit-message:
       prefix: "Dockerfile"
     groups:
