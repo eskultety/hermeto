@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -319,6 +319,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../sbom/" class="md-nav__link">
         
   
@@ -361,10 +388,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -382,8 +409,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -568,6 +595,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../pnpm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pnpm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../rpm/" class="md-nav__link">
         
   
@@ -711,6 +766,17 @@
     <span class="md-ellipsis">
       
         Supported Yarn protocols/locators
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git dependencies
       
     </span>
   </a>
@@ -982,6 +1048,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#git-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#dealing-with-yarnrcyml" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1207,6 +1284,7 @@
 <li><a href="#hermetos-yarn-support-scope">Hermeto's Yarn support scope</a></li>
 <li><a href="#supported-yarn-versions">Supported Yarn versions</a></li>
 <li><a href="#supported-yarn-protocolslocators">Supported Yarn protocols/locators</a></li>
+<li><a href="#git-dependencies">Git dependencies</a></li>
 <li><a href="#dealing-with-yarnrcyml">Dealing with .yarnrc.yml</a></li>
 <li><a href="#dealing-with-yarn-zero-installs">Dealing with Yarn Zero-Installs</a></li>
 <li><a href="#dealing-with-plugins">Dealing with plugins</a></li>
@@ -1225,16 +1303,36 @@
 "Yarn Classic" and is covered in Hermeto's <a href="https://hermetoproject.github.io/hermeto/yarn_classic">Yarn Classic</a> doc. <strong>This</strong>
 document describes Yarn v3 and v4 support.</p>
 <h3 id="supported-yarn-protocolslocators">Supported Yarn protocols/locators<a class="headerlink" href="#supported-yarn-protocolslocators" title="Permanent link">&para;</a></h3>
-<p>Hermeto currently supports all standard <a href="https://yarnpkg.com/protocols">Yarn protocols</a> except for</p>
+<p>Hermeto currently supports all standard <a href="https://yarnpkg.com/protocols">Yarn protocols</a> except for the
+<a href="https://yarnpkg.com/protocol/exec">Exec protocol</a>. Exec remains unsupported because it can run arbitrary code
+during resolution. For practical <code>package.json</code> examples of each protocol, see
+the official Yarn protocols documentation.</p>
+<p>The <a href="https://yarnpkg.com/protocol/git">Git/GitHub protocol</a> is supported with restrictions; see
+<a href="#git-dependencies">Git dependencies</a>.</p>
+<h3 id="git-dependencies">Git dependencies<a class="headerlink" href="#git-dependencies" title="Permanent link">&para;</a></h3>
+<p>Hermeto can prefetch plain <a href="https://yarnpkg.com/protocol/git">Git/GitHub protocol</a> dependencies when you pass
+<a href="../configuration/#modes"><code>--mode=permissive</code></a>. Strict mode rejects projects
+whose <code>yarn.lock</code> contains git-resolved packages, because Hermeto must rewrite
+<code>package.json</code> and <code>yarn.lock</code> to install from local tarballs instead of cloning
+during the hermetic build.</p>
+<div class="highlight"><pre><span></span><code>hermeto<span class="w"> </span>fetch-deps<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mode<span class="o">=</span>permissive<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--source<span class="w"> </span>./my-repo<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>./hermeto-output<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>yarn
+</code></pre></div>
+<p>Hermeto rejects the following variants during prefetch, before rewriting
+project files:</p>
 <ul>
-<li><a href="https://yarnpkg.com/protocol/exec">Exec protocol</a></li>
-<li><a href="https://yarnpkg.com/protocol/git">Git/GitHub protocol</a></li>
+<li>Patched git dependencies (a <a href="https://yarnpkg.com/protocol/patch">patch</a> applied to a package resolved from Git)</li>
+<li>Git dependencies that select a workspace inside the cloned repository</li>
 </ul>
-<p>Due to the nature of how the two protocols above work, mainly related to
-potentially executing arbitrary code, adding support for them with future
-releases of Hermeto is unlikely. For further details on Yarn protocols and their
-practical <code>package.json</code> examples, please head to the official Yarn
-documentation on protocols linked earlier in this section.</p>
+<p>Permissive mode does not relax those cases. Patches applied to registry or
+other non-Git packages remain supported.</p>
+<p>After a successful prefetch of git dependencies, run
+<a href="../usage/#inject-project-files"><code>hermeto inject-files</code></a> before the hermetic
+build so the rewritten <code>package.json</code> and <code>yarn.lock</code> are applied in the source
+tree.</p>
 <h3 id="dealing-with-yarnrcyml">Dealing with .yarnrc.yml<a class="headerlink" href="#dealing-with-yarnrcyml" title="Permanent link">&para;</a></h3>
 <p>Hermeto parses the project's <code>.yarnrc.yml</code> file and analyzes configuration
 settings. Before hermeto proceeds with the actual dependency fetching, it
@@ -1249,13 +1347,13 @@ references are bound by the repository. Part of the analysis of the repository's
 <a href="https://yarnpkg.com/advanced/lexicon#unplugged-package">unplugged dependencies</a> checked into the repository which simply make it
 impossible for the Yarn cache to be checked for integrity using Yarn's standard
 tooling (i.e. <code>yarn install --check-cache</code>).</p>
-<blockquote>
-<p><strong>NOTE</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>The same applies to dealing with the <code>node_modules</code> top level directory which,
 if checked into the repository, can also serve the Zero-Install purpose. If
 you need further information on which dependency linking mode is used, have a
 look at the <a href="https://yarnpkg.com/configuration/yarnrc#nodeLinker">nodeLinker</a> and on the <a href="https://yarnpkg.com/features/pnp">PnP</a> approach in general.</p>
-</blockquote>
+</div>
 <p>Also note that we may reconsider our initial decision when it comes to
 Zero-Installs provided the input repository doesn't rely on any dependencies
 which may include install scripts leading to their unpacking in a form of
@@ -1268,14 +1366,14 @@ dependency prefetch stage to ensure no other changes apart from downloading
 dependencies took action.</p>
 <p>For Yarn v3, even the official plugins are disabled, with the exception of
 <a href="https://v3.yarnpkg.com/features/plugins#official-plugins">exec</a>.</p>
-<blockquote>
-<p><strong>NOTE</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>hermeto doesn't taint your project files, so any plugins you set will be
 enabled normally in your build environment, the only problem that can arise is
 if any of your specified plugins adds a new protocol which hermeto doesn't
 know about in which case the dependency pre-fetch stage will fail with an
 error.</p>
-</blockquote>
+</div>
 <h2 id="specifying-packages-to-process">Specifying packages to process<a class="headerlink" href="#specifying-packages-to-process" title="Permanent link">&para;</a></h2>
 <p>A package is a file or directory that is described by a <a href="https://yarnpkg.com/configuration/manifest">package.json</a> file
 (also called a manifest).</p>
@@ -1283,15 +1381,15 @@ error.</p>
 <div class="highlight"><pre><span></span><code>hermeto<span class="w"> </span>fetch-deps<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--source<span class="w"> </span>./my-repo<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--output<span class="w"> </span>./hermeto-output<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span><span class="s1">&#39;&lt;JSON input&gt;&#39;</span>
+<span class="w">  </span><span class="s1">'&lt;JSON input&gt;'</span>
 </code></pre></div>
 <p>where 'JSON input' is</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="c1">// &quot;yarn&quot; tells Hermeto to process Yarn packages</span>
-<span class="w">  </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;yarn&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// "yarn" tells Hermeto to process Yarn packages</span>
+<span class="w">  </span><span class="s2">"type"</span><span class="o">:</span><span class="w"> </span><span class="s2">"yarn"</span><span class="p">,</span>
 <span class="w">  </span><span class="c1">// path to the package (relative to the --source directory)</span>
-<span class="w">  </span><span class="c1">// defaults to &quot;.&quot;</span>
-<span class="w">  </span><span class="s2">&quot;path&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// defaults to "."</span>
+<span class="w">  </span><span class="s2">"path"</span><span class="o">:</span><span class="w"> </span><span class="s2">"."</span><span class="p">,</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>or more simply by just invoking <code>hermeto fetch-deps yarn</code>.</p>
@@ -1303,10 +1401,10 @@ fetch only the dependencies needed for specific workspaces rather than the
 entire project. This is done by specifying the <code>workspaces</code> field in the JSON
 input:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;yarn&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s2">&quot;path&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;.&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="c1">// Only fetch dependencies for the &quot;my-app&quot; workspace</span>
-<span class="w">  </span><span class="s2">&quot;workspaces&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;my-app&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="s2">"type"</span><span class="o">:</span><span class="w"> </span><span class="s2">"yarn"</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">"path"</span><span class="o">:</span><span class="w"> </span><span class="s2">"."</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">// Only fetch dependencies for the "my-app" workspace</span>
+<span class="w">  </span><span class="s2">"workspaces"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"my-app"</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Hermeto will fetch only the dependencies needed for the specified workspaces
@@ -1316,13 +1414,13 @@ also included and will appear in the SBOM.</p>
 <div class="highlight"><pre><span></span><code>hermeto<span class="w"> </span>fetch-deps<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--source<span class="w"> </span>./my-monorepo<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--output<span class="w"> </span>./hermeto-output<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span><span class="s1">&#39;{&quot;type&quot;: &quot;yarn&quot;, &quot;workspaces&quot;: [&quot;app-frontend&quot;, &quot;lib-shared&quot;]}&#39;</span>
+<span class="w">  </span><span class="s1">'{"type": "yarn", "workspaces": ["app-frontend", "lib-shared"]}'</span>
 </code></pre></div>
-<blockquote>
-<p><strong>NOTE</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>This feature requires <strong>Yarn v4</strong>. The workspace names must match the <code>name</code>
 field in each workspace's <code>package.json</code>.</p>
-</blockquote>
+</div>
 <p>When <code>workspaces</code> is not specified, Hermeto fetches dependencies for all
 workspaces.</p>
 <h3 id="controlling-yarns-behavior">Controlling Yarn's behavior<a class="headerlink" href="#controlling-yarns-behavior" title="Permanent link">&para;</a></h3>
@@ -1372,17 +1470,17 @@ in the build environment along with explanation</p>
 <span class="nv">YARN_GLOBAL_FOLDER</span><span class="o">=</span>&lt;hermeto_output_dir&gt;/deps/yarn
 
 <span class="c1"># Yarn must not rely solely on the global cache (the pre-fetched one) because</span>
-<span class="c1"># it&#39;ll likely only be available (i.e. mounted) during the (container) build</span>
+<span class="c1"># it'll likely only be available (i.e. mounted) during the (container) build</span>
 <span class="c1"># time, but not runtime. We specifically want Yarn to copy those dependencies</span>
-<span class="c1"># from the global cache to the project&#39;s local cache</span>
+<span class="c1"># from the global cache to the project's local cache</span>
 <span class="nv">YARN_ENABLE_GLOBAL_CACHE</span><span class="o">=</span><span class="nb">false</span>
 
 <span class="c1"># Must be set to true, otherwise Yarn will not make use of the pre-populated</span>
-<span class="c1"># global cache we&#39;re pointing it at with YARN_GLOBAL_FOLDER at build time.</span>
+<span class="c1"># global cache we're pointing it at with YARN_GLOBAL_FOLDER at build time.</span>
 <span class="nv">YARN_ENABLE_MIRROR</span><span class="o">=</span><span class="nb">true</span>
 
-<span class="c1"># Must be false otherwise &#39;yarn install&#39; will fail to populate the project&#39;s</span>
-<span class="c1"># local cache (pointed to by the &#39;cacheFolder&#39; setting) from the global cache</span>
+<span class="c1"># Must be false otherwise 'yarn install' will fail to populate the project's</span>
+<span class="c1"># local cache (pointed to by the 'cacheFolder' setting) from the global cache</span>
 <span class="c1"># (the pre-fetched one).</span>
 <span class="nv">YARN_ENABLE_IMMUTABLE_CACHE</span><span class="o">=</span><span class="nb">false</span>
 </code></pre></div>
@@ -1398,7 +1496,7 @@ examples, this time using the Yarn package manager. Like with the previous
 examples the default path for the package we assume is <code>.</code>.</p>
 <p>See <a href="./">the Yarn documentation</a> for more details about running Hermeto for
 pre-fetching Yarn dependencies.</p>
-<div class="highlight"><pre><span></span><code>hermeto<span class="w"> </span>fetch-deps<span class="w"> </span>--output<span class="w"> </span>./hermeto-output<span class="w"> </span><span class="s1">&#39;{&quot;type&quot;: &quot;yarn&quot;}&#39;</span>
+<div class="highlight"><pre><span></span><code>hermeto<span class="w"> </span>fetch-deps<span class="w"> </span>--output<span class="w"> </span>./hermeto-output<span class="w"> </span><span class="s1">'{"type": "yarn"}'</span>
 </code></pre></div>
 <p>OR more simply (without the need of a JSON formatted argument) just</p>
 <div class="highlight"><pre><span></span><code>hermeto<span class="w"> </span>fetch-deps<span class="w"> </span>--output<span class="w"> </span>./hermeto-output<span class="w"> </span>yarn
@@ -1414,15 +1512,21 @@ $<span class="w"> </span>cat<span class="w"> </span>./hermeto.env
 <span class="nb">export</span><span class="w"> </span><span class="nv">YARN_GLOBAL_FOLDER</span><span class="o">=</span>/tmp/hermeto-output/deps/yarn
 </code></pre></div>
 <h4 id="inject-project-files">Inject project files<a class="headerlink" href="#inject-project-files" title="Permanent link">&para;</a></h4>
-<p>Like the <code>gomod</code> package manager Yarn does not <em>currently</em> need to modify any
-content in the source directory for the cached dependencies to be used in a
-hermetic build, however that might change in the future.</p>
+<p>When the project has no git dependencies, Yarn does not need Hermeto to rewrite
+source files for the cached dependencies to be used in a hermetic build.</p>
+<p>When git dependencies are present, Hermeto updates <code>package.json</code> and
+<code>yarn.lock</code> to point at the local tarballs. Inject those changes before the
+hermetic build:</p>
+<div class="highlight"><pre><span></span><code>hermeto<span class="w"> </span>inject-files<span class="w"> </span>./hermeto-output<span class="w"> </span>--for-output-dir<span class="w"> </span>/tmp/hermeto-output
+</code></pre></div>
+<p>See <a href="#git-dependencies">Git dependencies</a> and
+<a href="../usage/#inject-project-files">Inject project files</a>.</p>
 <h4 id="build-the-application-image">Build the application image<a class="headerlink" href="#build-the-application-image" title="Permanent link">&para;</a></h4>
 <p>The repo already contains a <code>Containerfile</code> for this example. Build it while
 mounting the pre-fetched Hermeto data:</p>
 <div class="highlight"><pre><span></span><code>podman<span class="w"> </span>build<span class="w"> </span>.<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--volume<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>realpath<span class="w"> </span>./hermeto-output<span class="k">)</span><span class="s2">&quot;</span>:/tmp/hermeto-output:Z<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--volume<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>realpath<span class="w"> </span>./hermeto.env<span class="k">)</span><span class="s2">&quot;</span>:/tmp/hermeto.env:Z<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--volume<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>realpath<span class="w"> </span>./hermeto-output<span class="k">)</span><span class="s2">"</span>:/tmp/hermeto-output:Z<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--volume<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>realpath<span class="w"> </span>./hermeto.env<span class="k">)</span><span class="s2">"</span>:/tmp/hermeto.env:Z<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--network<span class="w"> </span>none<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--tag<span class="w"> </span>yarn-example
 </code></pre></div>
@@ -1478,7 +1582,7 @@ mounting the pre-fetched Hermeto data:</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.sections", "search.share", "search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["latest"], "provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

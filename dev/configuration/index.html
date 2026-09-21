@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../configuration/">
+        <link rel="prev" href="../usage/">
       
       
-        <link rel="next" href="../bundler/">
+        <link rel="next" href="../sbom/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>SBOM - Hermeto</title>
+        <title>Configuration - Hermeto</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sbom" class="md-skip">
+        <a href="#configuration" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SBOM
+              Configuration
             
           </span>
         </div>
@@ -318,33 +318,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../configuration/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Configuration
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -364,7 +337,7 @@
   <span class="md-ellipsis">
     
   
-    SBOM
+    Configuration
   
 
     
@@ -382,7 +355,7 @@
   <span class="md-ellipsis">
     
   
-    SBOM
+    Configuration
   
 
     
@@ -408,22 +381,55 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scheme" class="md-nav__link">
+  <a href="#modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scheme
+        Modes
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Scheme">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#config-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Config sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-active-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inspecting active configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Settings">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#cyclonedx" class="md-nav__link">
+  <a href="#http" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CycloneDX
+        http
       
     </span>
   </a>
@@ -431,10 +437,76 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#spdx" class="md-nav__link">
+  <a href="#runtime" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SPDX
+        runtime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proxy-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proxy settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bundler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bundler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gomod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gomod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yarn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        yarn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cargo-npm-and-pnpm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cargo, npm and pnpm
       
     </span>
   </a>
@@ -443,117 +515,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#custom-data-hermeto-reports" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Custom data Hermeto reports
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Custom data Hermeto reports">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dependency-properties" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dependency properties
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#backend-and-source-information" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Backend and source information
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#main-package-representation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Main package representation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#versioning" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Versioning
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Versioning">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#reasons-for-lack-of-versions-in-some-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reasons for lack of versions in some dependencies
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#merging-sboms" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Merging SBOMs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cyclonedx-to-spdx-mapping" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CycloneDX to SPDX mapping
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#spdx-to-cyclonedx" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SPDX to CycloneDX
-      
-    </span>
-  </a>
   
 </li>
       
@@ -561,6 +522,33 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sbom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SBOM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -931,22 +919,55 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scheme" class="md-nav__link">
+  <a href="#modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scheme
+        Modes
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Scheme">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#config-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Config sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-active-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inspecting active configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Settings">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#cyclonedx" class="md-nav__link">
+  <a href="#http" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CycloneDX
+        http
       
     </span>
   </a>
@@ -954,10 +975,76 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#spdx" class="md-nav__link">
+  <a href="#runtime" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SPDX
+        runtime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proxy-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proxy settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bundler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bundler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gomod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gomod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yarn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        yarn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cargo-npm-and-pnpm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cargo, npm and pnpm
       
     </span>
   </a>
@@ -966,117 +1053,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#custom-data-hermeto-reports" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Custom data Hermeto reports
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Custom data Hermeto reports">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dependency-properties" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dependency properties
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#backend-and-source-information" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Backend and source information
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#main-package-representation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Main package representation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#versioning" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Versioning
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Versioning">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#reasons-for-lack-of-versions-in-some-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reasons for lack of versions in some dependencies
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#merging-sboms" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Merging SBOMs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cyclonedx-to-spdx-mapping" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CycloneDX to SPDX mapping
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#spdx-to-cyclonedx" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SPDX to CycloneDX
-      
-    </span>
-  </a>
   
 </li>
       
@@ -1097,7 +1073,7 @@
 
 
   
-    <a href="https://github.com/hermetoproject/hermeto/edit/main/docs/sbom.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/hermetoproject/hermeto/edit/main/docs/configuration.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1106,294 +1082,221 @@
     
       
     
-    <a href="https://github.com/hermetoproject/hermeto/raw/main/docs/sbom.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/hermetoproject/hermeto/raw/main/docs/configuration.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="sbom">SBOM<a class="headerlink" href="#sbom" title="Permanent link">&para;</a></h1>
-<p>Hermeto produces a Software Bill of Materials (SBOM) describing the dependencies
-it fetches. This document explains how Hermeto structures the SBOM, what custom
-fields it uses, how it maps between supported formats, and how conversion works.</p>
-<p>Hermeto supports the following SBOM formats:</p>
+<h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h1>
+<p>Hermeto's behavior can be tuned with CLI flags, environment variables, and YAML
+config files. This page describes operating modes and available settings.</p>
+<h2 id="modes">Modes<a class="headerlink" href="#modes" title="Permanent link">&para;</a></h2>
+<p>Hermeto currently supports two fetch modes. In <code>strict</code> mode, unmet input
+requirements are errors. In <code>permissive</code> mode, the same conditions produce
+warnings and Hermeto continues, however resulting SBOM may be incomplete or
+inaccurate.</p>
+<p>Set the global CLI option <code>--mode</code> to one of:</p>
 <ul>
-<li><strong>CycloneDX</strong> <a href="https://cyclonedx.org/docs/1.6/json">v1.6</a> (default)</li>
-<li><strong>SPDX</strong> <a href="https://spdx.github.io/spdx-spec/v2.3/">v2.3</a></li>
+<li><code>strict</code> (default)</li>
+<li><code>permissive</code></li>
 </ul>
-<p>The output format can be selected with <code>--sbom-output-type cyclonedx</code> or
-<code>--sbom-output-type spdx</code> when running <code>hermeto fetch-deps</code> or
-<code>hermeto merge-sboms</code>.</p>
-<p>Hermeto represents SBOMs internally as CycloneDX and can convert them to SPDX.
-Both formats use only a subset of their respective specifications; the subsets
-map into each other. The mapping is documented in
-<a href="#cyclonedx-to-spdx-mapping">CycloneDX to SPDX mapping</a>.</p>
-<h2 id="scheme">Scheme<a class="headerlink" href="#scheme" title="Permanent link">&para;</a></h2>
-<p>Hermeto produces a flat list of components (CycloneDX) or packages (SPDX). There
-is no nested tree of dependencies in either format.</p>
-<h3 id="cyclonedx">CycloneDX<a class="headerlink" href="#cyclonedx" title="Permanent link">&para;</a></h3>
-<p>All packages processed by Hermeto are represented by CycloneDX components. In a
-SBOM produced by Hermeto components form a single flat top-level <code>components</code> array,
-no hierarchy is preserved withing it. Of all possible component types available
-in CycloneDX spec Hermeto uses only two component types: <code>library</code> (default, used
-for components produced by all package managers except generic) and <code>file</code> (used
-for URL-based generic artifacts such as archives when the generic package manager
-fetches a zip/tarball).</p>
-<h3 id="spdx">SPDX<a class="headerlink" href="#spdx" title="Permanent link">&para;</a></h3>
-<p>At the time of writing, SBOMs are represented internally as CycloneDX. SPDX is
-produced with a converter (see <a href="#cyclonedx-to-spdx-mapping">CycloneDX to SPDX mapping</a>).
-SPDX SBOMs provided by Hermeto have the following properties:</p>
+<p>The permissive mode currently suppresses:</p>
 <ul>
-<li>The output has a <code>packages</code> array and a <code>relationships</code> array.</li>
-<li><code>packages</code>: the first entry is a synthetic root with
-  <code>SPDXID</code>:&nbsp;<code>SPDXRef-DocumentRoot-File-</code>
-  (empty <code>name</code> and <code>versionInfo</code>); the rest are SPDX package entries for actual
-  packages. The root is required by the SPDX specification.</li>
-<li><code>relationships</code>: the document describes the root
-  (<code>SPDXRef-DOCUMENT</code> &rarr; <code>SPDXRef-DocumentRoot-File-</code> via <code>DESCRIBES</code>);
-  every real package is linked to the root via <code>CONTAINS</code>.</li>
-<li>Unlike CycloneDX SPDX does not have direct equivalents to "library" or "file"
-  component types; all packages are listed without that distinction. As a result,
-  a <code>file</code> component in CycloneDX that is converted to SPDX and back will become
-  a <code>library</code> component &mdash; this is a known limitation.</li>
+<li>Go <code>vendor</code> directory inconsistencies (see <a href="../gomod/#vendoring">gomod</a>)</li>
+<li><code>Cargo.toml</code> out of sync with <code>Cargo.lock</code></li>
+<li>non-Git sources (e.g., unpacked tarballs)</li>
+<li>Yarn Berry plain git dependencies (see <a href="../yarn/#git-dependencies">yarn</a>);
+  strict mode rejects them because <code>package.json</code> and <code>yarn.lock</code> must be
+  rewritten. Patched git dependencies and git dependencies that select a
+  workspace inside the cloned repository fail in both modes</li>
 </ul>
-<h2 id="custom-data-hermeto-reports">Custom data Hermeto reports<a class="headerlink" href="#custom-data-hermeto-reports" title="Permanent link">&para;</a></h2>
-<h3 id="dependency-properties">Dependency properties<a class="headerlink" href="#dependency-properties" title="Permanent link">&para;</a></h3>
-<p>Hermeto attaches properties from a fixed set to all dependencies. These
-properties carry metadata about dependencies they are attached to. These
-properties are stored in the CycloneDX <code>components[].properties</code> array; in SPDX
-they are represented as package annotations (see
-<a href="#cyclonedx-to-spdx-mapping">CycloneDX to SPDX mapping</a>). Property names use
-<code>hermeto:</code> as a prefix, except for the two <a href="https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/npm.md#cdxnpmpackage-namespace-taxonomy">standard CycloneDX npm properties</a>
-which use the <code>cdx:</code> prefix defined by the CycloneDX specification. The table
-below lists all custom properties:</p>
+<p>Using permissive mode on non-Git trees is mainly useful for smoke tests; SBOM
+accuracy is reduced. See <a href="../usage/#general-process">usage</a> for Git repository
+expectations.</p>
+<p>For details on how permissive violations are tracked in SBOM output, see
+<code>docs/design/permissive-mode.md</code>.</p>
+<h2 id="config-sources">Config sources<a class="headerlink" href="#config-sources" title="Permanent link">&para;</a></h2>
+<p>Hermeto merges settings from several sources, where higher-priority sources
+override lower-priority ones (listed top to bottom):</p>
+<ol>
+<li><strong>Environment variables</strong> — prefix <code>HERMETO_</code>, use <code>__</code> for nested keys
+   (e.g., <code>HERMETO_GOMOD__DOWNLOAD_MAX_TRIES=10</code>)</li>
+<li><strong>CLI</strong> — <code>--config-file path/to/config.yaml</code></li>
+<li><strong>Config files</strong> — loaded automatically when present:</li>
+<li><code>~/.config/hermeto/config.yaml</code></li>
+<li><code>hermeto.yaml</code></li>
+<li><code>.hermeto.yaml</code></li>
+</ol>
+<p>Hermeto only supports YAML config files.</p>
+<h2 id="inspecting-active-configuration">Inspecting active configuration<a class="headerlink" href="#inspecting-active-configuration" title="Permanent link">&para;</a></h2>
+<p>Use <code>hermeto config</code> to display the effective configuration after all sources
+have been merged. Each field is annotated with its corresponding environment
+variable name, and values that differ from defaults are marked with <code>(*)</code>.</p>
+<div class="highlight"><pre><span></span><code>hermeto<span class="w"> </span>config
+</code></pre></div>
+<p>To show only values that differ from defaults:</p>
+<div class="highlight"><pre><span></span><code>hermeto<span class="w"> </span>config<span class="w"> </span>--diff
+</code></pre></div>
+<p>By default, sensitive fields such as <code>proxy_password</code> are redacted. To reveal
+them, pass <code>--raw</code>:</p>
+<div class="highlight"><pre><span></span><code>hermeto<span class="w"> </span>config<span class="w"> </span>--raw
+</code></pre></div>
+<h2 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h2>
+<p>Some settings apply to every package manager. Others apply only to specific
+backends.</p>
+<h3 id="http"><code>http</code><a class="headerlink" href="#http" title="Permanent link">&para;</a></h3>
+<p>Applies to all package managers.</p>
 <table>
 <thead>
 <tr>
-<th>Property name</th>
-<th>Meaning</th>
-<th>When it appears</th>
+<th>Key</th>
+<th>Default</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>hermeto:found_by</code></td>
-<td>Tool that added the dependency</td>
-<td>Always</td>
+<td><code>connect_timeout</code></td>
+<td><code>30</code></td>
+<td>Connection timeout in seconds</td>
 </tr>
 <tr>
-<td><code>hermeto:missing_hash:in_file</code></td>
-<td>Path to a lockfile with a missing checksum</td>
-<td>When there is a lockfile with some checksums missing</td>
+<td><code>read_timeout</code></td>
+<td><code>300</code></td>
+<td>Read timeout in seconds; long downloads succeed while data flows</td>
 </tr>
 <tr>
-<td><code>hermeto:bundler:package:binary</code></td>
-<td>Bundler gem is a platform-specific binary</td>
-<td>When the gem is a platform-specific binary</td>
-</tr>
-<tr>
-<td><code>cdx:npm:package:bundled</code></td>
-<td>Npm package is bundled</td>
-<td>When the package is bundled within another</td>
-</tr>
-<tr>
-<td><code>cdx:npm:package:development</code></td>
-<td>Npm package is a dev dependency</td>
-<td>When the package is a development dependency</td>
-</tr>
-<tr>
-<td><code>hermeto:pip:package:binary</code></td>
-<td>Pip package is a binary wheel</td>
-<td>When the package is a binary wheel</td>
-</tr>
-<tr>
-<td><code>hermeto:pip:package:build-dependency</code></td>
-<td>Pip package is a build-time dependency</td>
-<td>When the package is required at build time</td>
-</tr>
-<tr>
-<td><code>hermeto:rpm_modularity_label</code></td>
-<td>RPM modularity label</td>
-<td>When the RPM has a modularity label</td>
-</tr>
-<tr>
-<td><code>hermeto:rpm_summary</code></td>
-<td>RPM summary</td>
-<td><a href="../rpm/#basic-options">When you set <code>include_summary_in_sbom</code> to <code>true</code></a></td>
+<td><code>max_retries</code></td>
+<td><code>5</code></td>
+<td>Maximum HTTP request retries</td>
 </tr>
 </tbody>
 </table>
-<h3 id="backend-and-source-information">Backend and source information<a class="headerlink" href="#backend-and-source-information" title="Permanent link">&para;</a></h3>
-<p>Unlike the dependency properties above, which are stored as flat key/value pairs
-in <code>components[].properties</code> (CycloneDX) or package annotations (SPDX), backend
-and source information use other SBOM fields because they describe where a
-component came from, not arbitrary key/value metadata on the component.</p>
-<p><strong>Backends</strong> &mdash; lets consumers know which backend (e.g. gomod, pip, npm)
-produced each dependency. Experimental backends (name starting with <code>x-</code>) are
-tagged as experimental. Supported SBOM types represent them like follows:</p>
-<ul>
-<li><strong>CycloneDX</strong>: Top-level annotations. Text format <code>hermeto:backend:&lt;backend_name&gt;</code>
-  (e.g. <code>hermeto:backend:gomod</code>); for experimental backends,
-  <code>hermeto:backend:experimental:&lt;backend_name&gt;</code>. Each annotation references a
-  component by <code>bom-ref</code> (which equals the component's <code>purl</code>).</li>
-<li><strong>SPDX</strong>: Those backend tags become package annotations on the matching
-  packages (see <a href="#cyclonedx-to-spdx-mapping">CycloneDX to SPDX mapping</a>).</li>
-</ul>
-<p><strong>Actual source URL</strong> &mdash; When a dependency was downloaded via an artifact
-repository manager (e.g. JFrog Artifactory or Sonatype Nexus), Hermeto records
-the real download location as well as the usual distribution reference. If
-several URLs are known, all are recorded; the SBOM does not say which URL was
-actually used (some backends cannot provide that). It is represented as follows:</p>
-<ul>
-<li><strong>CycloneDX</strong>: An external reference with <code>type</code>:&nbsp;<code>"distribution"</code>,
-  <code>comment</code>:&nbsp;<code>"proxy URL"</code>, and <code>url</code> set to the download location. Multiple
-  URLs are multiple such references.</li>
-<li><strong>SPDX</strong>: The same information is mapped to the package field <code>sourceInfo</code>
-  (semicolon-separated when there are several).</li>
-</ul>
-<p><strong>Permissive mode</strong> &mdash; When Hermeto runs with
-<a href="../configuration/#modes"><code>--mode=permissive</code></a> and bypasses a check that would
-fail in strict mode, it records that fact as a top-level annotation whose
-<code>subjects</code> list the affected components (by <code>bom-ref</code>). Annotation text uses
-the form <code>hermeto:permissive-mode:&lt;backend&gt;:&lt;reason&gt;</code>:</p>
+<h3 id="runtime"><code>runtime</code><a class="headerlink" href="#runtime" title="Permanent link">&para;</a></h3>
+<p>Applies to all package managers.</p>
 <table>
 <thead>
 <tr>
-<th>Annotation suffix (<code>&lt;backend&gt;:&lt;reason&gt;</code>)</th>
-<th>Meaning</th>
+<th>Key</th>
+<th>Default</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>gomod:vendor-directory-changed-after-vendoring</code></td>
-<td>Contents of the Go <code>vendor</code> directory differed from what <code>go mod vendor</code> would produce</td>
+<td><code>concurrency_limit</code></td>
+<td><code>5</code></td>
+<td>Maximum concurrent operations</td>
 </tr>
 <tr>
-<td><code>cargo:generated-lockfile</code></td>
-<td>Hermeto generated a <code>Cargo.lock</code> that was missing or out of sync with <code>Cargo.toml</code></td>
-</tr>
-<tr>
-<td><code>yarn:using-git-dependencies</code></td>
-<td>Yarn Berry project used plain git dependencies (see <a href="../yarn/#git-dependencies">yarn</a>)</td>
+<td><code>subprocess_timeout</code></td>
+<td><code>3600</code></td>
+<td>Subprocess timeout in seconds</td>
 </tr>
 </tbody>
 </table>
-<p>In SPDX output, these become per-package annotations on the matching packages
-(see <a href="#cyclonedx-to-spdx-mapping">CycloneDX to SPDX mapping</a>).</p>
-<h2 id="main-package-representation">Main package representation<a class="headerlink" href="#main-package-representation" title="Permanent link">&para;</a></h2>
-<p>The SBOM does <strong>not</strong> mark which dependency is the main package. All are
-listed as peers. The SBOM alone does not distinguish "the app" from its
-dependencies.</p>
-<h2 id="versioning">Versioning<a class="headerlink" href="#versioning" title="Permanent link">&para;</a></h2>
-<p>Hermeto provides several versioning mechanisms in SBOMs:</p>
-<ul>
-<li><strong>Version</strong>: Each dependency can have a version, taken from the package
-  manager's data (lockfile, metadata, or similar). Some dependencies have no
-  version; Hermeto omits the field in that case. For further details see
-  <a href="#reasons-for-lack-of-versions-in-some-dependencies">Reasons for lack of versions in some dependencies</a>.</li>
-<li><strong>PURL</strong>: The main identifier for each dependency is its PURL (package URL).
-  The PURL can still include version-like information (e.g. a Git commit) even
-  when the version field is missing.</li>
-<li><strong>SBOM format version</strong>: The SBOM file itself carries a format version
-  &mdash; the schema version, not the application's version.
-  CycloneDX:&nbsp;<code>specVersion</code> (e.g. <code>"1.6"</code>) and a top-level integer <code>version</code>
-  (BOM revision). SPDX:&nbsp;<code>spdxVersion</code> (e.g. <code>"SPDX-2.3"</code>).</li>
-</ul>
-<h3 id="reasons-for-lack-of-versions-in-some-dependencies">Reasons for lack of versions in some dependencies<a class="headerlink" href="#reasons-for-lack-of-versions-in-some-dependencies" title="Permanent link">&para;</a></h3>
-<p>Some dependencies in the SBOM may have no version; when and why depends on the
-ecosystem:</p>
-<ul>
-<li><strong>Go (gomod)</strong>: The standard library version is tied to the Go runtime, but
-  Hermeto omits it because the Go version used during pre-fetching may differ
-  from the one used in the actual hermetic build; recording it could lead
-  vulnerability analyzers to incorrectly flag versions and to incorrectly apply
-  a particular provenance policy. Modules referenced via <code>replace</code> directives
-  pointing to local paths may also lack a version; other modules get one when
-  resolved.</li>
-<li><strong>Yarn</strong>: Workspace and linked packages often have no version.</li>
-<li><strong>Cargo</strong>: Missing if a local path dependency omits it, or if a workspace
-  member inherits from <code>[workspace.package]</code> and that field is unset.</li>
-<li><strong>npm</strong>: Version is taken from the lock file, however in rare cases it could
-  be missing.</li>
-<li><strong>pip</strong>: PyPI packages always have a version; VCS or local path sources may
-  not. May also be absent if the main project uses dynamic versioning
-  (e.g. setuptools-scm).</li>
-</ul>
-<h2 id="merging-sboms">Merging SBOMs<a class="headerlink" href="#merging-sboms" title="Permanent link">&para;</a></h2>
-<p>Merging is only meant for <strong>SBOMs produced by Hermeto</strong> (for example from
-<code>fetch-deps</code> or an earlier successful merge) due to the fact that Hermeto
-supports only subsets of SBOM formats. Input files must match Hermeto's
-CycloneDX or SPDX model; arbitrary SBOMs from other tools are not supported and
-will be rejected as invalid.</p>
-<h2 id="cyclonedx-to-spdx-mapping">CycloneDX to SPDX mapping<a class="headerlink" href="#cyclonedx-to-spdx-mapping" title="Permanent link">&para;</a></h2>
-<p>Hermeto forms the SBOM as CycloneDX first; this section describes the
-translation used when SPDX output is requested (e.g. via
-<code>--sbom-output-type spdx</code>).</p>
+<h3 id="proxy-settings">Proxy settings<a class="headerlink" href="#proxy-settings" title="Permanent link">&para;</a></h3>
+<p>Applies to <code>bundler</code>, <code>cargo</code>, <code>gomod</code>, <code>npm</code>, <code>pnpm</code>, and <code>yarn</code> when pulling
+dependencies through an artifact repository manager (e.g. Sonatype Nexus or
+JFrog Artifactory). The primary use of <code>proxy_login</code> and <code>proxy_password</code> is
+to authenticate with such a registry. Set <code>proxy_url</code> to its base URL. Do not
+embed credentials in the URL.</p>
 <table>
 <thead>
 <tr>
-<th>CycloneDX</th>
-<th>SPDX</th>
+<th>Key</th>
+<th>Default</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>Component</code></td>
-<td><code>SPDXPackage</code></td>
+<td><code>proxy_url</code></td>
+<td><em>(unset)</em></td>
+<td>Registry base URL</td>
 </tr>
 <tr>
-<td>Component identity</td>
-<td><code>SPDXID</code>: <code>SPDXRef-Package-{name}-{version}-{hash}</code> (or <code>SPDXRef-Package-{name}-{hash}</code>). The hash is the SHA-256 hex digest of a JSON object with keys <code>name</code>, <code>version</code>, and <code>purl</code>, serialized with keys sorted. The idstring is sanitized per SPDX rules (only letters, digits, <code>.</code>, <code>-</code>). <code>versionInfo</code> is set to the component's version or omitted when <code>None</code>.</td>
+<td><code>proxy_login</code></td>
+<td><em>(unset)</em></td>
+<td>Registry username (must be set together with <code>proxy_password</code>)</td>
 </tr>
 <tr>
-<td><code>purl</code></td>
-<td><code>externalRefs</code>: one entry with <code>referenceCategory=PACKAGE-MANAGER</code>, <code>referenceType=purl</code>, <code>referenceLocator=&lt;purl&gt;</code></td>
-</tr>
-<tr>
-<td><code>properties</code></td>
-<td>Package <code>annotations</code>: each property encoded as JSON <code>{"name":"...","value":"..."}</code> in <code>comment</code>; <code>annotator</code> is <code>Tool: hermeto:jsonencoded</code>.</td>
-</tr>
-<tr>
-<td>Top-level <code>annotations</code> (by bom-ref)</td>
-<td>Per-package annotations containing the same values as CycloneDX top-level annotations: <code>comment</code> = annotation text</td>
-</tr>
-<tr>
-<td>ExternalReference (<code>type=distribution</code>, <code>comment=proxy URL</code>)</td>
-<td><code>sourceInfo</code> (semicolon-separated if multiple)</td>
-</tr>
-<tr>
-<td>(no root in CycloneDX)</td>
-<td>A synthetic root package <code>SPDXRef-DocumentRoot-File-</code> is created with <code>name=""</code> and <code>versionInfo=""</code>. The document describes the root; the root contains every package.</td>
-</tr>
-<tr>
-<td><code>pedigree.patches</code></td>
-<td><code>externalRefs</code>: one entry per patch with <code>referenceCategory=OTHER</code>, <code>referenceType=patch</code> (hermeto-defined custom type), <code>referenceLocator=&lt;patch diff URL&gt;</code></td>
-</tr>
-<tr>
-<td><code>metadata.tools</code></td>
-<td><code>creationInfo.creators</code> (<code>Tool:</code> / <code>Organization:</code>)</td>
+<td><code>proxy_password</code></td>
+<td><em>(unset)</em></td>
+<td>Registry password (must be set together with <code>proxy_login</code>)</td>
 </tr>
 </tbody>
 </table>
-<h2 id="spdx-to-cyclonedx">SPDX to CycloneDX<a class="headerlink" href="#spdx-to-cyclonedx" title="Permanent link">&para;</a></h2>
-<p>When SPDX is converted to CycloneDX (e.g. when merging an SPDX SBOM with a
-CycloneDX one), the following applies:</p>
-<ul>
-<li>Each SPDX package becomes one or more CycloneDX components. Because CycloneDX
-  allows only one PURL per component, an SPDX package with multiple PURLs in
-  <code>externalRefs</code> becomes multiple components.</li>
-<li><code>versionInfo</code> is passed through as the component's <code>version</code>.</li>
-<li>Annotations whose <code>annotator</code> ends with <code>:jsonencoded</code> are parsed as
-  properties; others are stored as top-level annotations.</li>
-<li><code>sourceInfo</code> is converted back to ExternalReferences with <code>type=distribution</code>
-  and <code>comment=proxy URL</code>.</li>
-<li>External refs with <code>referenceCategory=OTHER</code> and <code>referenceType=patch</code> are
-  reconstructed as <code>pedigree.patches</code> entries.</li>
-</ul>
-<p><strong>Limitation</strong>: An SPDX package that has multiple PURLs in <code>externalRefs</code> becomes
-multiple CycloneDX components when converted to CycloneDX, because CycloneDX does
-not support multiple PURLs on one component.</p>
+<h3 id="bundler"><code>bundler</code><a class="headerlink" href="#bundler" title="Permanent link">&para;</a></h3>
+<p>Supports the <a href="#proxy-settings">proxy settings</a> above and has no additional
+keys. Only rubygems registry dependencies are proxied; git and path
+dependencies are unaffected.</p>
+<h3 id="gomod"><code>gomod</code><a class="headerlink" href="#gomod" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>download_max_tries</code></td>
+<td><code>5</code></td>
+<td>Maximum retry attempts for Go module commands</td>
+</tr>
+<tr>
+<td><code>environment_variables</code></td>
+<td><code>{}</code></td>
+<td>Default environment variables for the gomod backend</td>
+</tr>
+</tbody>
+</table>
+<p>Go supports the <a href="#proxy-settings">proxy settings</a> above. The default
+<code>proxy_url</code> is <code>https://proxy.golang.org,direct</code>. When <code>proxy_login</code> is set,
+<code>proxy_url</code> must be a single URL (not a comma-separated list).</p>
+<h3 id="pip"><code>pip</code><a class="headerlink" href="#pip" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ignore_dependencies_crates</code></td>
+<td><code>false</code></td>
+<td>Legacy option for Rust-based pip dependencies; do not rely on it</td>
+</tr>
+</tbody>
+</table>
+<h3 id="yarn"><code>yarn</code><a class="headerlink" href="#yarn" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enabled</code></td>
+<td><code>true</code></td>
+<td>Legacy toggle for Yarn v3 and v4 processing; do not rely on it</td>
+</tr>
+</tbody>
+</table>
+<p>Yarn v3 and v4 also support the <a href="#proxy-settings">proxy settings</a> above. Yarn
+Classic ignores this section.</p>
+<h3 id="cargo-npm-and-pnpm"><code>cargo</code>, <code>npm</code> and <code>pnpm</code><a class="headerlink" href="#cargo-npm-and-pnpm" title="Permanent link">&para;</a></h3>
+<p>These package managers support the <a href="#proxy-settings">proxy settings</a> above and
+have no additional keys.</p>
 
 
 

@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -321,6 +321,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../sbom/" class="md-nav__link">
         
   
@@ -363,10 +390,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -384,8 +411,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -579,6 +606,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#git-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#limitations" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -752,6 +790,34 @@
     
   
     pip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pnpm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pnpm
   
 
     
@@ -1000,6 +1066,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#git-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#limitations" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1098,13 +1175,13 @@ As a result, gems with native extensions will be compiled from the source.</p>
 are only available as pre-compiled binaries. In this case, you may need to
 enable the pre-fetching of gems for specific platforms using the <code>binary</code> field
 when running the <code>fetch-deps</code> command.</p>
-<blockquote>
-<p><strong>WARNING</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>The <code>binary</code> field is not fully supported yet. When the <code>binary</code> field is specified,
 no platform filtering is performed. Instead, all available pre-compiled gems
 from the Gemfile.lock are downloaded, regardless of platform-specific
 requirements. See <a href="https://github.com/hermetoproject/hermeto/issues/1075">#1075</a>.</p>
-</blockquote>
+</div>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
 <p><a href="https://bundler.io">Bundler</a> uses an unorthodox system when dealing with
 <a href="https://bundler.io/v2.5/man/bundle-config.1.html#DESCRIPTION">configuration options</a>. The highest precedence is given to the config file,
@@ -1146,13 +1223,13 @@ path for your app explicitly with
 <p>Allow Bundler to use cached data when installing without network access.</p>
 <h3 id="bundle_disable_version_check">BUNDLE_DISABLE_VERSION_CHECK<a class="headerlink" href="#bundle_disable_version_check" title="Permanent link">&para;</a></h3>
 <p>Stop Bundler from checking if a newer Bundler version is available on rubygems.org.</p>
-<blockquote>
-<p><strong>NOTE</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>A prefetch could fail when Bundler versions differ between the build system
 and lockfile and when the former is outdated. Therefore we do not recommend
 using mismatching or outdated versions of Bundler in build systems as this
 might result in unexpected failures.*</p>
-</blockquote>
+</div>
 <p>To create the configuration file, run the following command.</p>
 <div class="highlight"><pre><span></span><code>hermeto<span class="w"> </span>inject-files<span class="w"> </span>--for-output-dir<span class="w"> </span>/tmp/hermeto-output<span class="w"> </span>hermeto-output
 </code></pre></div>
@@ -1165,6 +1242,25 @@ to the copied configuration file.</p>
 <span class="nb">export</span><span class="w"> </span><span class="nv">BUNDLE_APP_CONFIG</span><span class="o">=</span>/tmp/hermeto-output/bundler/config_override
 </code></pre></div>
 <p>The generated environment file should be sourced before running any Bundler command.</p>
+<h3 id="git-dependencies">Git dependencies<a class="headerlink" href="#git-dependencies" title="Permanent link">&para;</a></h3>
+<p>If your project includes git dependencies, Hermeto pre-fetches each repository
+as a bare clone and redirects bundler's git fetches to the local copies using
+git's
+<a href="https://git-scm.com/docs/git-config#Documentation/git-config.txt-urlltbasegtinsteadOf"><code>url.insteadOf</code></a>
+mechanism. The generated environment file will include <code>GIT_CONFIG_COUNT</code>,
+<code>GIT_CONFIG_KEY_N</code>, and <code>GIT_CONFIG_VALUE_N</code> variables, for example:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">GIT_CONFIG_COUNT</span><span class="o">=</span><span class="m">2</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">GIT_CONFIG_KEY_0</span><span class="o">=</span>url.file:///tmp/hermeto-output/deps/bundler/myrepo-26487618a684/.insteadOf
+<span class="nb">export</span><span class="w"> </span><span class="nv">GIT_CONFIG_VALUE_0</span><span class="o">=</span>https://github.com/org/myrepo
+<span class="nb">export</span><span class="w"> </span><span class="nv">GIT_CONFIG_KEY_1</span><span class="o">=</span>protocol.file.allow
+<span class="nb">export</span><span class="w"> </span><span class="nv">GIT_CONFIG_VALUE_1</span><span class="o">=</span>always
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>These variables are set globally for the git process. If your build
+environment already defines <code>GIT_CONFIG_*</code> variables (e.g. from an outer CI
+configuration), the values generated by Hermeto will overwrite them.</p>
+</div>
 <h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
 <p>Since the local configuration takes higher precedence than the environment
 variables (except <code>BUNDLE_APP_CONFIG</code>), we copy the configuration file and
@@ -1194,8 +1290,8 @@ hermetic and reproducible.</p>
 <p>Assuming <code>hermeto-output</code> and <code>hermeto.env</code> are in the same directory as the
 Dockerfile, build the image with the following command</p>
 <div class="highlight"><pre><span></span><code>podman<span class="w"> </span>build<span class="w"> </span>.<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--volume<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>realpath<span class="w"> </span>./hermeto-output<span class="k">)</span><span class="s2">&quot;</span>:/tmp/hermeto-output:Z<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--volume<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>realpath<span class="w"> </span>./hermeto.env<span class="k">)</span><span class="s2">&quot;</span>:/tmp/hermeto.env:Z<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--volume<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>realpath<span class="w"> </span>./hermeto-output<span class="k">)</span><span class="s2">"</span>:/tmp/hermeto-output:Z<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--volume<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>realpath<span class="w"> </span>./hermeto.env<span class="k">)</span><span class="s2">"</span>:/tmp/hermeto.env:Z<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--network<span class="w"> </span>none<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--tag<span class="w"> </span>my-ruby-app
 </code></pre></div>
@@ -1206,7 +1302,12 @@ Dockerfile, build the image with the following command</p>
 <li>reporting development dependencies</li>
 <li>plugins</li>
 </ul>
-<p>[^1] <code>BUNDLE_DEPLOYMENT</code> enforces <a href="https://www.bundler.cn/man/bundle-install.1.html#DEPLOYMENT-MODE">deployment mode</a> which is essentially
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Hermeto ignores Bundler plugins. Prefetching may fail if the project depends
+on plugin behavior. Try to avoid using Bundler plugins with Hermeto.</p>
+</div>
+<p>[^1] <code>BUNDLE_DEPLOYMENT</code> enforces <a href="https://guides.rubygems.org/command-reference/bundle-install#DEPLOYMENT-MODE">deployment mode</a> which is essentially
 vendoring your application and its dependencies. In other words, deployment will
 install your application to a local <code>vendor/bundle</code> directory instead of using
 the standard system-wide location. This is currently the only way of forcing
@@ -1266,7 +1367,7 @@ Dockerfile won't take effect, consider <code>BUNDLE_PATH</code> instead.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.sections", "search.share", "search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["latest"], "provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
